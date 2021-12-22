@@ -1,0 +1,23 @@
+.reset-button__container {
+    width: 200px;
+    height: 50px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reset-button__container:hover {
+    background-color: darkred;
+    cursor: pointer;
+}
+
+.reset-button__text {
+    font-family: sans-serif;
+    color: white;
+    font-weight: bold;
+    line-height: 20px;
+    font-size: 24px;
+    margin: 0;
+    padding: 15px 0;
+}

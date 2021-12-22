@@ -1,0 +1,7 @@
+.stopwatch-display__time {
+    font-family: sans-serif;
+    line-height: 30px;
+    font-size: 40px;
+    font-weight: bold;
+    color: black;
+}

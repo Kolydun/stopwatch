@@ -1,0 +1,18 @@
+.stopwatch-controls__container {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.stopwatch-controls__buttons-container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 700px;
+    justify-content: space-between;
+}
+
+.stopwatch-controls__display-container {
+    display: flex;
+    min-width: 600px;
+    justify-content: center;
+}
