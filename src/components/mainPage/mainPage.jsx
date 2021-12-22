@@ -10,8 +10,6 @@ import {
 } from 'rxjs/operators';
 import StopwatchControls from "../stopwatchControls/stopwatchControls";
 
-import './mainPage.css';
-
 const MainPage = () => {
     const [time, setTime] = useState(0)
     const [stopwatchState, setStopwatchState] = useState("stop");
@@ -30,7 +28,13 @@ const MainPage = () => {
     };
 
     const onResetClick = () => {
-        stopwatchState === "start" && setTime(0);
+        if (stopwatchState === "start") {
+            setTime(0)
+        } else if (stopwatchState === "wait") {
+            setTime(0);
+            setStopwatchState("start");
+        }
+
     };
 
     const onWaitClick = () => {

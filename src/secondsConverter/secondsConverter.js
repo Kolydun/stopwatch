@@ -7,7 +7,7 @@ const convertSeconds = (totalSeconds, format) => {
     const minutes = parseInt(totalMinutes % 60);
     const hours = parseInt(totalHours % 24);
 
-    switch(format) {
+    switch (format) {
         case 's':
             return seconds < 10 ? "0" + seconds : seconds;
         case 'm':
