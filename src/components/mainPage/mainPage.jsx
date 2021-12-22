@@ -1,20 +1,11 @@
 import React from "react";
-import {useState, useMemo, useEffect} from "react";
-import {Observable, Subject} from 'rxjs';
-import {
-    map,
-    buffer,
-    debounceTime,
-    filter,
-    takeUntil,
-} from 'rxjs/operators';
+import {useState, useEffect} from "react";
+import {Observable} from "rxjs";
 import StopwatchControls from "../stopwatchControls/stopwatchControls";
 
 const MainPage = () => {
     const [time, setTime] = useState(0)
     const [stopwatchState, setStopwatchState] = useState("stop");
-
-    const click$ = useMemo(() => new Subject(), []);
 
     const onStartClick = () => {
         if (stopwatchState === "stop" || stopwatchState === "wait") {
@@ -34,23 +25,13 @@ const MainPage = () => {
             setTime(0);
             setStopwatchState("start");
         }
-
     };
 
     const onWaitClick = () => {
-
-        click$.next();
         stopwatchState !== ("wait" || "stop") && setStopwatchState("wait");
-        click$.next();
     }
 
     useEffect(() => {
-        const doubleClick$ = click$.pipe(
-            buffer(click$.pipe(debounceTime(300))),
-            map((list) => list.length),
-            filter((value) => value >= 2),
-        );
-
         const timer$ = new Observable((observer) => {
             let count = 0;
             const intervalId = setInterval(() => {
@@ -63,7 +44,6 @@ const MainPage = () => {
         });
 
         const subscribtion$ = timer$
-            .pipe(takeUntil(doubleClick$))
             .subscribe({
                 next: () => {
                     if (stopwatchState === 'start') {
@@ -76,7 +56,6 @@ const MainPage = () => {
             subscribtion$.unsubscribe();
         });
     }, [stopwatchState]);
-
 
     return (
         <>
